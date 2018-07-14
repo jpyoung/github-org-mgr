@@ -15,3 +15,5 @@ expected_data = {
 }
 
 print(expected_data)
+print(str(len(data)))
+print(data['author'])
