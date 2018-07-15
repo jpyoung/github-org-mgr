@@ -8,9 +8,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(True, True)
 
     def test_GObject(self):
-        go = ManagerClasses.GObject(540, 'Lighthouse')
-        self.assertEqual(go.id, 540)
-        self.assertEqual(go.name, 'Lighthouse')
+        go = ManagerClasses.GObject(1, 'A')
+        self.assertEqual(go.id, 1)
+        self.assertEqual(go.name, 'A')
 
 
 if __name__ == '__main__':
