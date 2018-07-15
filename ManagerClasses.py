@@ -44,3 +44,28 @@ class Label(GObject):
     def __init__(self, id, name, color):
         super(Label, self).__init__(id, name)
         self.color = color
+
+
+# COMPOSITION
+
+class Orgs(Object):
+
+    def __init__(self):
+        self.orgs = []
+
+    def add_org(self, org):
+        self.orgs.append(org)
+
+    def remove_org(self, org):
+        self.orgs.remove(org)
+
+    def list(self):
+        tmp_dic = self.__dict__.copy()
+        tmp_arr = []
+        for letter, number in tmp_dic.iteritems():
+            for el in tmp_dic[letter]:
+                tmp_arr.append(el.toJSON())
+        return tmp_arr
+
+    def toJSON(self):
+        return self.list()
