@@ -19,3 +19,14 @@ def exclude_keys(dictionary, keys):
     """
     key_set = set(dictionary.keys()) - set(keys)
     return {key: dictionary[key] for key in key_set}
+
+
+def list_diff(keys1, keys2):
+    """
+    Return the difference of two lists as a new list.
+    :param keys1:
+    :param keys2:
+    :return: list
+    """
+    #return list(set(keys1) - set(keys2))
+    return list(set(keys1).difference(set(keys2)))
