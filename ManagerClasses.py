@@ -6,6 +6,8 @@ class Object(object):
     def toJSON(self):
         return self.__dict__
 
+    def obj_keys(self):
+        return self.__dict__.keys()
 
 class GObject(Object):
 
@@ -23,12 +25,15 @@ class Org(GObject):
 
 class Repo(GObject):
 
-    def __init__(self, id, name, html_url, git_url, ssh_url, clone_url):
+    def __init__(self, id, name, html_url=None, git_url=None, ssh_url=None, clone_url=None):
         super(Repo, self).__init__(id, name)
         self.html_url = html_url
         self.git_url = git_url
         self.ssh_url = ssh_url
         self.clone_url = clone_url
+        self.pushed_at = None
+        self.open_issues = None
+        self.org_name = None
 
 
 class Tag(GObject):

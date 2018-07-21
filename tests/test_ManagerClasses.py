@@ -21,6 +21,30 @@ class MyTestCase(unittest.TestCase):
         label = ManagerClasses.Label(1, "bug", "d73a4a")
         self.assertDictEqual(label.toJSON(), label_data_v1)
 
+    def test_object_keys_label(self):
+        expected_keys = [
+            'color',
+            'id',
+            'name'
+        ]
+        label = ManagerClasses.Label(1, "bug", "d73a4a")
+        self.assertListEqual(label.obj_keys(), expected_keys)
+
+    def test_object_keys_repo(self):
+        expected_keys = [
+            'org_name',
+            'name',
+            'html_url',
+            'pushed_at',
+            'clone_url',
+            'git_url',
+            'ssh_url',
+            'open_issues',
+            'id'
+        ]
+        repo = ManagerClasses.Repo(1, "A")
+        self.assertListEqual(repo.obj_keys(), expected_keys)
+
     def test_comp_org(self):
         org1 = ManagerClasses.Org(1, 'AA', 'http://github.com/AA')
         self.assertEqual(org1.id, 1)
