@@ -16,8 +16,6 @@ class MyTestCase(unittest.TestCase):
 
     def test_read_in_json_file(self):
         data = file_util.read_in_json_file("../data/example_json.json")
-        print(data)
-        print("jack")
         expected_data = {
             "author": "John Young",
             "date": "07-14-2018",
@@ -55,8 +53,24 @@ class MyTestCase(unittest.TestCase):
             for value in diff_keys:
                 data[value] = None
 
-        #print(json.dumps(data, indent=4))
+        # print(json.dumps(data, indent=4))
         self.assertEqual(len(data.keys()), 11)
+        self.assertEqual(True, True)
+
+    def test_handle_labels(self):
+        keys = [
+            "id",
+            "name",
+            "color"
+        ]
+        response_data = file_util.read_in_json_file("../data/example_repo_labels.json")
+        data = []
+        for value in response_data:
+            tmp = transformation.include_keys(value, keys)
+            data.append(tmp)
+
+        #print(json.dumps(data, indent=4))
+        self.assertEqual(len(data), 8)
         self.assertEqual(True, True)
 
 
