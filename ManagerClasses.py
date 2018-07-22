@@ -9,12 +9,17 @@ class Object(object):
     def obj_keys(self):
         return self.__dict__.keys()
 
+    def __str__(self):
+        return '__str__ for Object'
+
 class GObject(Object):
 
     def __init__(self, id, name):
         self.id = id
         self.name = name
 
+    def __str__(self):
+        return self.name
 
 class Org(GObject):
 
@@ -22,8 +27,12 @@ class Org(GObject):
         super(Org, self).__init__(id, login)
         self.avatar_url = avatar_url
 
+    def __str__(self):
+        return self.name
 
 class Repo(GObject):
+
+    class_name = 'Repository'
 
     def __init__(self, id, name, html_url=None, git_url=None, ssh_url=None, clone_url=None):
         super(Repo, self).__init__(id, name)
@@ -35,6 +44,11 @@ class Repo(GObject):
         self.open_issues = None
         self.org_name = None
 
+    def _rep(self):
+        return '<{0} [{1}]>'.format(self.class_name, self)
+
+    def __str__(self):
+        return self.name + "Jack"
 
 class Tag(GObject):
 
@@ -43,6 +57,9 @@ class Tag(GObject):
         self.commit_sha = commit_sha
         self.commit_url = commit_url
 
+    def __str__(self):
+        return self.name
+
 
 class Label(GObject):
 
@@ -50,6 +67,28 @@ class Label(GObject):
         super(Label, self).__init__(id, name)
         self.color = color
 
+    def __str__(self):
+        return self.name + " " + self.color
+
+    def create_label(self, name, color):
+        """Create a label for this repository.
+        :param str name:
+            (required), name to give to the label
+        :param str color:
+            (required), value of the color to assign to the
+            label, e.g., '#fafafa' or 'fafafa' (the latter is what is sent)
+        :returns:
+            the created label
+        :rtype:
+            :class:`~github3.issues.label.Label`
+        """
+        self.color = color  #remove this line not needed
+        json = None
+        if name and color:
+            data = {'name': name, 'color': color.strip('#')}
+        # post url data
+        # json = json resp
+        return json
 
 # COMPOSITION
 
