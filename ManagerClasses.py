@@ -44,11 +44,21 @@ class Repo(GObject):
         self.open_issues = None
         self.org_name = None
 
+    def set_fields(self, data):
+        self.html_url = data['html_url']
+        self.git_url = data['git_url']
+        self.ssh_url = data['ssh_url']
+        self.clone_url = data['clone_url']
+        self.pushed_at = data['pushed_at']
+        self.open_issues = data['open_issue']
+        self.org_name = data['org_name']
+
     def _rep(self):
         return '<{0} [{1}]>'.format(self.class_name, self)
 
     def __str__(self):
         return self.name + "Jack"
+
 
 class Tag(GObject):
 
@@ -63,9 +73,13 @@ class Tag(GObject):
 
 class Label(GObject):
 
-    def __init__(self, id, name, color):
+    def __init__(self, id, name, color=None):
         super(Label, self).__init__(id, name)
         self.color = color
+
+
+    def set_fields(self, data):
+        self.color = data['color']
 
     def __str__(self):
         return self.name + " " + self.color
