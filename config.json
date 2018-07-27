@@ -1,0 +1,7 @@
+{
+  "data_source": {
+    "debug_logging": true,
+    "type": "API",
+    "base_url": "https://github.com/"
+  }
+}
