@@ -3,6 +3,8 @@ __author__ = 'john.young'
 
 class Object(object):
 
+    class_name = 'Object'
+
     def toJSON(self):
         """
         String representation of the object.
@@ -27,6 +29,8 @@ class Object(object):
 
 class GObject(Object):
 
+    class_name = 'GObject'
+
     def __init__(self, id, name):
         self.id = id
         self.name = name
@@ -36,6 +40,8 @@ class GObject(Object):
 
 
 class Org(GObject):
+
+    class_name = 'Organization'
 
     def __init__(self, id, login, avatar_url):
         super(Org, self).__init__(id, login)
@@ -77,6 +83,8 @@ class Repo(GObject):
 
 class Tag(GObject):
 
+    class_name = 'Tag'
+
     def __init__(self, id, name, commit_sha, commit_url):
         super(Tag, self).__init__(id, name)
         self.commit_sha = commit_sha
@@ -87,6 +95,8 @@ class Tag(GObject):
 
 
 class Label(GObject):
+
+    class_name = 'Label'
 
     def __init__(self, id, name, color=None):
         super(Label, self).__init__(id, name)
@@ -120,7 +130,15 @@ class Label(GObject):
 
 # COMPOSITION
 
+
 class Orgs(Object):
+    """
+    # COMPOSITION
+    Organization Composition
+
+    """
+
+    class_name = 'Organizations'
 
     def __init__(self):
         self.orgs = []
