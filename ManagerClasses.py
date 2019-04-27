@@ -5,9 +5,9 @@ class Object(object):
 
     class_name = 'Object'
 
-    def toJSON(self):
+    def to_json(self):
         """
-        String representation of the object.
+        JSON string representation of the object.
         """
 
         return self.__dict__
@@ -154,8 +154,8 @@ class Orgs(Object):
         tmp_arr = []
         for letter, number in tmp_dic.iteritems():
             for el in tmp_dic[letter]:
-                tmp_arr.append(el.toJSON())
+                tmp_arr.append(el.to_json())
         return tmp_arr
 
-    def toJSON(self):
+    def to_json(self):
         return self.list()
