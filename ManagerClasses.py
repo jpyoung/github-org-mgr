@@ -4,13 +4,26 @@ __author__ = 'john.young'
 class Object(object):
 
     def toJSON(self):
+        """
+        String representation of the object.
+        """
+
         return self.__dict__
 
     def obj_keys(self):
+        """
+        Return a list of the keys in the object.
+        """
+
         return self.__dict__.keys()
 
     def __str__(self):
+        """
+        Readable string representation of object
+        """
+
         return '__str__ for Object'
+
 
 class GObject(Object):
 
@@ -21,6 +34,7 @@ class GObject(Object):
     def __str__(self):
         return self.name
 
+
 class Org(GObject):
 
     def __init__(self, id, login, avatar_url):
@@ -29,6 +43,7 @@ class Org(GObject):
 
     def __str__(self):
         return self.name
+
 
 class Repo(GObject):
 
@@ -76,7 +91,6 @@ class Label(GObject):
     def __init__(self, id, name, color=None):
         super(Label, self).__init__(id, name)
         self.color = color
-
 
     def set_fields(self, data):
         self.color = data['color']
