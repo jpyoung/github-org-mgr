@@ -1,7 +1,36 @@
 __author__ = 'john.young'
 
 import json
+import yaml
+import csv
 #from collections import OrderedDict
+
+
+def read_in_yaml_file(file_path):
+    """
+    Read in a YAML configuration file
+    :param file_path:
+    :return:
+    """
+    with open(file_path, 'r') as ymlfile:
+        cfg = yaml.load(ymlfile)
+    return cfg
+
+
+def read_in_csv_file(file_path):
+    """
+    Read in a CSV file
+    :param file_path:
+    :return:
+    """
+    data_list = []
+    with open(file_path, mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        line_count = 0
+        for row in csv_reader:
+            data_list.append(dict(row.copy()))
+            line_count += 1
+    return data_list
 
 
 def read_in_file(file_path):
